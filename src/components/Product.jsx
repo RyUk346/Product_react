@@ -71,8 +71,8 @@ const Product = () => {
   );
 
   return (
-    <div className="flex justify-center items-center w-full h-screen font-roboto">
-      <div className="max-w-[1320px] max-h-[720px] mt-[60px] ml-[60px] gap-[20px] lg:flex">
+    <div className="justify-center items-center w-full h-screen font-roboto">
+      <div className="max-w-[1320px] max-h-[720px] mt-[60px] ml-[60px] md:ml-[80px] lg:ml[120px] gap-[20px] sm:gap-[30px] md:gap-[40px] lg:gap-[50px] xl:gap-[60px] lg:flex">
         <div className="max-w-[630px] h-[720px]">
           <img
             src={images[selectedColor]}
@@ -99,26 +99,30 @@ const Product = () => {
           </h1>
 
           {/* Color Selection */}
-          <div className="pt-[20px]">
+          <div className="max-w-[630px] pt-[20px]">
             <h1 className="font-bold text-[18px] text-[#364A63]">Band Color</h1>
             <div>
-              <form className="flex gap-4">
+              <form autoComplete="off" className="flex gap-4">
                 {Object.keys(images).map((color) => (
-                  <div key={color}>
+                  <React.Fragment key={color}>
                     <input
                       type="radio"
                       name="color"
                       value={color}
+                      id={`radio-${color}`}
                       className="peer hidden"
-                      id={`color-${color}`}
                       checked={selectedColor === color}
                       onChange={() => setSelectedColor(color)}
                     />
                     <label
-                      htmlFor={`color-${color}`}
-                      className={`w-6 h-6 rounded-full bg-[${color.toLowerCase()}-500] peer-checked:ring-2 peer-checked:ring-${color.toLowerCase()}-700 cursor-pointer`}
+                      htmlFor={`radio-${color}`}
+                      className={`w-6 h-6 rounded-full ${
+                        color === "Black"
+                          ? "bg-black peer-checked:ring-2 peer-checked:ring-gray-700"
+                          : `bg-${color.toLowerCase()}-500 peer-checked:ring-2 peer-checked:ring-${color.toLowerCase()}-700`
+                      } cursor-pointer`}
                     ></label>
-                  </div>
+                  </React.Fragment>
                 ))}
               </form>
             </div>
@@ -183,21 +187,38 @@ const Product = () => {
                 Add to Cart
               </button>
             </div>
+            <div>
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                viewBox="0 0 24 24"
+                width="20"
+                height="20"
+                color="none"
+                fill="#6576FF"
+              >
+                <path
+                  d="M19.4626 3.99415C16.7809 2.34923 14.4404 3.01211 13.0344 4.06801C12.4578 4.50096 12.1696 4.71743 12 4.71743C11.8304 4.71743 11.5422 4.50096 10.9656 4.06801C9.55962 3.01211 7.21909 2.34923 4.53744 3.99415C1.01807 6.15294 0.221721 13.2749 8.33953 19.2834C9.88572 20.4278 10.6588 21 12 21C13.3412 21 14.1143 20.4278 15.6605 19.2834C23.7783 13.2749 22.9819 6.15294 19.4626 3.99415Z"
+                  stroke="currentColor"
+                  stroke-width="1"
+                  stroke-linecap="round"
+                />
+              </svg>
+            </div>
           </div>
 
           {/* Checkout Button */}
-          <div className="mt-[20px]">
-            <button
-              onClick={openCheckout}
-              className="bg-[#FFBB5A] text-[#364A63] rounded-[20px] w-[139px] h-[42px] font-bold text-[13px] leading-[20px] tracking-[0.26px] flex justify-center items-center"
-            >
-              Checkout
-              <span className="bg-white w-[19px] h-[20px] ml-2 rounded-[5px]">
-                {totalItems}
-              </span>
-            </button>
-          </div>
         </div>
+      </div>
+      <div className="mt-[550px] lg:mt-[80px] flex justify-center pb-[20px]">
+        <button
+          onClick={openCheckout}
+          className="bg-[#FFBB5A] text-[#364A63] rounded-[20px] w-[139px] h-[42px] font-bold text-[13px] leading-[20px] tracking-[0.26px] flex justify-center items-center"
+        >
+          Checkout
+          <span className="bg-white w-[19px] h-[20px] ml-2 rounded-[5px]">
+            {totalItems}
+          </span>
+        </button>
       </div>
 
       {/* Cart Popup */}
@@ -208,48 +229,55 @@ const Product = () => {
               Your Cart
             </h1>
             <div className="max-w-[563px]">
+              <div className="max-w-[563px] h-[36px] flex pr-[4px] pt-[8px] border-b py-2 text-[14px] leading-[23.1px] text-[#8091A7]">
+                <div className="w-[278px] mr-6">Item</div>
+                <div className="w-[62px]">Color</div>
+                <div className="w-[69px]">Size</div>
+                <div className="w-[59px]">Qnt</div>
+                <div className="w-[91px] text-right">Price</div>
+              </div>
               {cart.length === 0 ? (
                 <p className="text-[#8091A7]">Your cart is empty.</p>
               ) : (
                 cart.map((product, index) => (
                   <div
                     key={index}
-                    className="flex justify-between py-2 border-b text-[14px] leading-[23.1px] text-[#364A63]"
+                    className="w-[563px] h-[52px] items-center justify-center flex py-2 border-b text-[14px] leading-[23.1px] text-[#364A63]"
                   >
-                    <div className="flex items-center gap-4">
+                    <div className="w-[278px] h-[36px] flex items-center gap-4 mr-6">
                       <img
                         src={images[product.color]}
                         className="w-9 h-9 rounded"
                         alt="Product"
                       />
                       <span>{product.name}</span>
-                      <span>
-                        ({product.size}, {product.color})
-                      </span>
                     </div>
-                    <div className="flex items-center gap-2">
-                      <span>{product.quantity}x</span>
-                      <span>${product.price * product.quantity}</span>
+                    <div className="w-[62px]">{product.color}</div>
+                    <div className="w-[69px] font-bold">{product.size}</div>
+                    <div className="w-[59px] font-bold">{product.quantity}</div>
+                    <div className="w-[91px] font-bold text-right">
+                      ${(product.price * product.quantity).toFixed(2)}
                     </div>
                   </div>
                 ))
               )}
             </div>
-            <div className="flex justify-between mt-4">
-              <h2 className="text-[#6576FF] text-[20px] font-bold">Total:</h2>
-              <h2 className="text-[#6576FF] text-[20px] font-bold">
-                ${totalPrice}
-              </h2>
+            <div className="flex justify-between text-[#373737] font-bold text-lg mt-4">
+              <div className="text-[16px]">Total</div>
+              <div className="flex gap-[90px] text-[14px]">
+                <div>{totalItems}</div>
+                <div>${totalPrice.toFixed(2)}</div>
+              </div>
             </div>
-            <div className="flex justify-end mt-4 gap-4">
+            <div className="flex justify-end gap-[20px] mt-4">
               <button
                 onClick={closeCheckout}
-                className="bg-[#DBDFEA] text-[#364A63] px-4 py-2 rounded"
+                className="whitespace-nowrap w-[152px] h-[36px] rounded-[3px] border border-[#DBDFEA] py-2 px-[18px] gap-[10px] text-[#364A63] text-[13px] leading-[20px] tracking-[0.26px]"
               >
-                Close
+                Continue Shopping
               </button>
-              <button className="bg-[#6576FF] text-white px-4 py-2 rounded">
-                Proceed to Payment
+              <button className="w-[94px] h-[36px] rounded-[3px] bg-[#6576FF] text-white border border-[#DBDFEA] py-2 px-[18px] gap-[10px] text-[13px] leading-[20px] tracking-[0.26px]">
+                Checkout
               </button>
             </div>
           </div>
