@@ -72,15 +72,15 @@ const Product = () => {
 
   return (
     <div className="justify-center items-center w-full h-screen font-roboto">
-      <div className="max-w-[1320px] max-h-[720px] mt-[60px] ml-[60px] md:ml-[80px] lg:ml[120px] gap-[20px] sm:gap-[30px] md:gap-[40px] lg:gap-[50px] xl:gap-[60px] lg:flex">
-        <div className="max-w-[630px] h-[720px]">
+      <div className="max-w-[1320px] max-h-[720px] mt-[10px] ml-[10px] md:ml-[80px] md:mt-[60px] lg:ml[120px] gap-[20px] sm:gap-[30px] md:gap-[40px] lg:gap-[50px] xl:gap-[60px] lg:flex">
+        <div className="max-w-[630px] max-h-[720px]">
           <img
             src={images[selectedColor]}
-            className="w-full h-[720px] rounded-[4px]"
+            className="w-full max-h-[720px] rounded-[4px]"
             alt="Product"
           />
         </div>
-        <div className="max-w-[630px] h-[539px] py-[120px]">
+        <div className="max-w-[630px] max-h-[539px] py-[10px] lg:py-[120px]">
           <h1 className="text-[40px] leading-[44px] font-bold text-[#364A63]">
             Classy Modern Smart watch
           </h1>
@@ -298,16 +298,25 @@ const Product = () => {
                 />
               </svg>
             </div>
-            <div></div>
           </div>
-
+          <div className="py-4 flex justify-center pb-[20px] lg:hidden">
+            <button
+              onClick={openCheckout}
+              className="bg-[#FFBB5A] text-[#364A63] rounded-[20px] w-[139px] h-[42px] font-bold text-[13px] leading-[20px] tracking-[0.26px] flex justify-center items-center"
+            >
+              Checkout
+              <span className="bg-white w-[19px] h-[20px] ml-2 rounded-[5px]">
+                {totalItems}
+              </span>
+            </button>
+          </div>
           {/* Checkout Button */}
         </div>
       </div>
-      <div className="mt-[550px] lg:mt-[80px] flex justify-center pb-[20px]">
+      <div className="mt-[500px] min-[400px]:mt-[460px] lg:mt-[80px] flex justify-center pb-[20px]">
         <button
           onClick={openCheckout}
-          className="bg-[#FFBB5A] text-[#364A63] rounded-[20px] w-[139px] h-[42px] font-bold text-[13px] leading-[20px] tracking-[0.26px] flex justify-center items-center"
+          className="bg-[#FFBB5A] text-[#364A63] rounded-[20px] w-[139px] h-[42px] font-bold text-[13px] leading-[20px] tracking-[0.26px] hidden lg:flex justify-center items-center"
         >
           Checkout
           <span className="bg-white w-[19px] h-[20px] ml-2 rounded-[5px]">
