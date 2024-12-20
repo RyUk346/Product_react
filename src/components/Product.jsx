@@ -7,15 +7,15 @@ import blueImage from "../assets/blue.png";
 const colors = {
   Purple: "#816BFF",
   Cyan: "#1FCEC9",
-  Black: "#3B4747",
   Blue: "#4B97D3",
+  Black: "#3B4747",
 };
 
 const images = {
   Purple: purpleImage,
   Cyan: cyanImage,
-  Black: blackImage,
   Blue: blueImage,
+  Black: blackImage,
 };
 
 const sizePrices = {
@@ -205,7 +205,7 @@ const Product = () => {
 
           <div className="max-w-[630px] pt-[20px]">
             <h1 className="font-bold text-[18px] text-[#364A63]">Band Color</h1>
-            <div className="flex gap-4 py-4">
+            <div className="flex gap-[19px] py-4">
               {Object.keys(colors).map((color) => (
                 <label
                   key={color}
