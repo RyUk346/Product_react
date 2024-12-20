@@ -4,6 +4,13 @@ import cyanImage from "../assets/cyan.png";
 import blackImage from "../assets/black.png";
 import blueImage from "../assets/blue.png";
 
+const colors = {
+  Purple: "#816BFF",
+  Cyan: "#1FCEC9",
+  Black: "#3B4747",
+  Blue: "#4B97D3",
+};
+
 const images = {
   Purple: purpleImage,
   Cyan: cyanImage,
@@ -198,30 +205,29 @@ const Product = () => {
 
           <div className="max-w-[630px] pt-[20px]">
             <h1 className="font-bold text-[18px] text-[#364A63]">Band Color</h1>
-            <div>
-              <form autoComplete="off" className="flex gap-4">
-                {Object.keys(images).map((color) => (
-                  <React.Fragment key={color}>
-                    <input
-                      type="radio"
-                      name="color"
-                      value="color"
-                      id={`radio-${color}`}
-                      className="peer hidden"
-                      checked={selectedColor === color}
-                      onChange={() => setSelectedColor(color)}
-                    />
-                    <label
-                      htmlFor={`radio-${color}`}
-                      className={`w-6 h-6 rounded-full ${
-                        color === "Black"
-                          ? "bg-black peer-checked:ring-2 peer-checked:ring-gray-700"
-                          : `bg-${color.toLowerCase()}-500 peer-checked:ring-2 peer-checked:ring-${color.toLowerCase()}-700`
-                      } cursor-pointer`}
-                    ></label>
-                  </React.Fragment>
-                ))}
-              </form>
+            <div className="flex gap-4 py-4">
+              {Object.keys(colors).map((color) => (
+                <label
+                  key={color}
+                  className="relative flex items-center justify-center w-6 h-6 cursor-pointer"
+                >
+                  <input
+                    type="radio"
+                    name="color"
+                    value={color}
+                    checked={selectedColor === color}
+                    onChange={() => setSelectedColor(color)}
+                    className="appearance-none w-full h-full rounded-full checked:border-2"
+                    style={{
+                      borderColor: colors[color],
+                    }}
+                  />
+                  <span
+                    className="absolute w-4 h-4 rounded-full"
+                    style={{ backgroundColor: colors[color] }}
+                  ></span>
+                </label>
+              ))}
             </div>
           </div>
 
