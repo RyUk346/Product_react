@@ -72,7 +72,7 @@ const Product = () => {
 
   return (
     <div className="justify-center items-center w-full h-screen font-roboto">
-      <div className="max-w-[1320px] max-h-[720px] mt-[10px] ml-[10px] md:ml-[80px] md:mt-[60px] lg:ml[120px] gap-[20px] sm:gap-[30px] md:gap-[40px] lg:gap-[50px] xl:gap-[60px] lg:flex">
+      <div className="max-w-[1320px] max-h-[720px] m-[10px] md:ml-[80px] md:mt-[60px] lg:ml[120px] gap-[20px] sm:gap-[30px] md:gap-[40px] lg:gap-[50px] xl:gap-[60px] lg:flex">
         <div className="max-w-[630px] max-h-[720px]">
           <img
             src={images[selectedColor]}
@@ -195,6 +195,7 @@ const Product = () => {
           </h1>
 
           {/* Color Selection */}
+
           <div className="max-w-[630px] pt-[20px]">
             <h1 className="font-bold text-[18px] text-[#364A63]">Band Color</h1>
             <div>
@@ -204,7 +205,7 @@ const Product = () => {
                     <input
                       type="radio"
                       name="color"
-                      value={color}
+                      value="color"
                       id={`radio-${color}`}
                       className="peer hidden"
                       checked={selectedColor === color}
@@ -282,6 +283,7 @@ const Product = () => {
               >
                 Add to Cart
               </button>
+
               <svg
                 xmlns="http://www.w3.org/2000/svg"
                 viewBox="0 0 24 24"
@@ -313,7 +315,7 @@ const Product = () => {
           {/* Checkout Button */}
         </div>
       </div>
-      <div className="mt-[500px] min-[400px]:mt-[460px] lg:mt-[80px] flex justify-center pb-[20px]">
+      <div className="flex justify-center pb-[20px]">
         <button
           onClick={openCheckout}
           className="bg-[#FFBB5A] text-[#364A63] rounded-[20px] w-[139px] h-[42px] font-bold text-[13px] leading-[20px] tracking-[0.26px] hidden lg:flex justify-center items-center"
@@ -328,12 +330,12 @@ const Product = () => {
       {/* Cart Popup */}
       {isPopupOpen && (
         <div className="fixed inset-0 bg-black bg-opacity-50 flex justify-center items-center">
-          <div className="w-[400px] md:w-[651px] max-h-[480px] bg-white p-6 sm:p-8 md:p-11 rounded-[20px] gap-[16px]">
+          <div className="w-[400px] md:w-[651px] max-h-[480px] bg-white p-4 md:p-11 rounded-[20px] gap-[16px]">
             <h1 className="text-[#364A63] text-[22px] leading-[24px] font-bold">
               Your Cart
             </h1>
             <div className="max-w-[563px]">
-              <div className="max-w-[563px] h-[36px] flex pr-[4px] pt-[8px] border-b py-2 text-[14px] leading-[23.1px] text-[#8091A7]">
+              <div className="max-w-[563px] h-[36px] flex pr-[4px] pt-[8px] border-b py-2 text-[14px] leading-[23.1px] text-[#8091A7] gap-2">
                 <div className="w-[278px] mr-6">Item</div>
                 <div className="w-[62px]">Color</div>
                 <div className="w-[69px]">Size</div>
@@ -346,9 +348,9 @@ const Product = () => {
                 cart.map((product, index) => (
                   <div
                     key={index}
-                    className="w-[563px] h-[52px] items-center justify-center flex py-2 border-b text-[14px] leading-[23.1px] text-[#364A63]"
+                    className="max-w-[563px] h-[52px] items-center justify-center flex py-2 border-b gap-2 text-[14px] leading-[23.1px] text-[#364A63]"
                   >
-                    <div className="w-[278px] h-[36px] flex items-center gap-4 mr-6">
+                    <div className="w-[278px] h-[36px] flex items-center gap-2 sm:gap-4 mr-6">
                       <img
                         src={images[product.color]}
                         className="w-9 h-9 rounded"
